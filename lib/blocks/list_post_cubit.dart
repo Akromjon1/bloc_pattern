@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pattern_set_state/blocks/update_post_cubit.dart';
 import 'package:pattern_set_state/services/http_service.dart';
 
 import '../models/post_model.dart';
@@ -45,11 +46,12 @@ class ListPostCubit extends Cubit<ListPostState>{
   }
 
   void callUpdatePage(BuildContext context, Post post) async {
-    print(post.toJson());
+    //print(post.toJson());
     var results = await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => UpdatePage(post: post)));
     if (results != null) {
       BlocProvider.of<ListPostCubit>(context).apiPostList;
     }
+
   }
 }

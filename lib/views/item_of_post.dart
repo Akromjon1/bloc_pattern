@@ -13,7 +13,7 @@ Widget itemOfPost(BuildContext context, Post post) {
       children: [
         SlidableAction(
           onPressed: (BuildContext context) {
-            BlocProvider.of<ListPostCubit>(context).callUpdatePage(context, post);
+          BlocProvider.of<ListPostCubit>(context).callUpdatePage(context, post);
           },
           backgroundColor: const Color(0xFF21B7CA),
           foregroundColor: Colors.white,
@@ -28,6 +28,7 @@ Widget itemOfPost(BuildContext context, Post post) {
       motion: const ScrollMotion(),
       children: [
         SlidableAction(
+
           onPressed: (BuildContext context) {
             BlocProvider.of<ListPostCubit>(context).apiPostDelete(post);
           },
@@ -39,18 +40,19 @@ Widget itemOfPost(BuildContext context, Post post) {
       ],
     ),
     child: Container(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.only(left: 20, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            post.title.toUpperCase(),
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            post.fullname.toUpperCase(),
+            style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 5,
           ),
-          Text(post.body),
+          Text(post.mobile),
         ],
       ),
     ),

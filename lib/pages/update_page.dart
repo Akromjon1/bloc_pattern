@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:pattern_set_state/blocks/list_post_cubit.dart';
+import 'package:pattern_set_state/main.dart';
 
 import '../blocks/update_post_cubit.dart';
 import '../blocks/update_post_state.dart';
@@ -21,17 +23,17 @@ class _UpdatePageState extends State<UpdatePage> {
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
 
-  _finish(BuildContext context) {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Navigator.pop(context, "result");
-    });
-  }
+  _finish(context) {
+    SchedulerBinding.instance.addPostFrameCallback((_)=> Navigator.pop(context,"resultsss"),
+    );
+
+    }
 
   @override
   void initState() {
     super.initState();
-    titleController.text = widget.post!.title;
-    bodyController.text = widget.post!.body;
+    titleController.text = widget.post!.fullname;
+    bodyController.text = widget.post!.mobile;
   }
 
   @override
@@ -40,7 +42,7 @@ class _UpdatePageState extends State<UpdatePage> {
       create: (context) => UpdatePostCubit(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Update a Post"),
+          title: const Text("Update a Post"),
         ),
         body: BlocBuilder<UpdatePostCubit, UpdatePostState>(
           builder: (BuildContext context, UpdatePostState state) {
@@ -49,9 +51,9 @@ class _UpdatePageState extends State<UpdatePage> {
               String body = bodyController.text.toString();
               Post post = Post(
                   id: widget.post!.id,
-                  title: title,
-                  body: body,
-                  userId: widget.post!.userId);
+                  fullname: title,
+                  mobile: body,
+                  );
               return viewOfUpdate(
                   true, context, post, titleController, bodyController);
             }

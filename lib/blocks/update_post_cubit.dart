@@ -8,7 +8,7 @@ class UpdatePostCubit extends Cubit<UpdatePostState>  {
 
 
   void apiPostUpdate(Post post) async{
-    post.userId = 1;
+    //post.userId = 1;
     print(post.toJson());
     emit(UpdatePostLoading());
     final response = await Network.PUT(Network.API_UPDATE + post.id.toString(), Network.paramsUpdate(post));

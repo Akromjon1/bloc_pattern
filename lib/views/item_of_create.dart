@@ -29,9 +29,9 @@ Widget viewOfCreate(bool isLoading, BuildContext context,
             ElevatedButton(
               onPressed: () {
                 Post post = Post(
-                    title: titleController.text.toString(),
-                    body: bodyController.text.toString(),
-                    userId: 1, id: 1);
+                    fullname: titleController.text.toString(),
+                    mobile: bodyController.text.toString(),
+                     id: "1");
                 BlocProvider.of<CreatePostCubit>(context).apiPostCreate(post);
               },
               child: const Text(

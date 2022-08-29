@@ -26,7 +26,7 @@ Widget viewOfUpdate(bool isLoading, BuildContext context, Post post, TextEditing
             ),
             ElevatedButton(
               onPressed: () {
-                Post updatePost = Post(id: post.id, title: titleController.text, body: bodyController.text, userId: post.userId);
+                Post updatePost = Post(id: post.id, fullname: titleController.text.toString(), mobile: bodyController.text.toString());
                 BlocProvider.of<UpdatePostCubit>(context).apiPostUpdate(updatePost);
               },
               child: const Text(
