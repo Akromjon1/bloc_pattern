@@ -13,10 +13,10 @@ Widget viewOfHome(List<Post> items, bool isLoading) {
         },
       ),
       isLoading
-          ? Center(
+          ? const Center(
         child: CircularProgressIndicator(),
       )
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
     ],
   );
 }

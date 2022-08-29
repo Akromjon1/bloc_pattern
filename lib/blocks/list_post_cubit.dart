@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pattern_set_state/services/http_service.dart';
 
 import '../models/post_model.dart';
+import '../pages/create_page.dart';
+import '../pages/update_page.dart';
 import 'list_post_state.dart';
 
 class ListPostCubit extends Cubit<ListPostState>{
@@ -30,6 +33,23 @@ class ListPostCubit extends Cubit<ListPostState>{
       apiPostList();
     } else {
       emit(ListPostError(error: "Couldn't delete post"));
+    }
+  }
+
+  void callCreatePage(BuildContext context) async {
+    var results = await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const CreatePage()));
+    if (results != null ) {
+      BlocProvider.of<ListPostCubit>(context).apiPostList();
+    }
+  }
+
+  void callUpdatePage(BuildContext context, Post post) async {
+    print(post.toJson());
+    var results = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => UpdatePage(post: post)));
+    if (results != null) {
+      BlocProvider.of<ListPostCubit>(context).apiPostList;
     }
   }
 }
